@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.ctre.phoenix6.hardware.TalonFX;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -16,11 +18,13 @@ public class Robot extends TimedRobot {
   public Robot() {
     m_robotContainer = new RobotContainer();
   }
-
+  TalonFX m_motor = new TalonFX(0);
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run(); 
     // Test push test
+    // test motor
+    //m_motor.set(0.1);
   }
 
   @Override

@@ -31,6 +31,8 @@ public class RobotContainer {
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
     private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
     private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
+    private final SwerveRequest.RobotCentric r_drive = new SwerveRequest.RobotCentric()
+            .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
 
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
@@ -65,6 +67,12 @@ public class RobotContainer {
 
         
         new JoystickButton(d_joystick, 5).whileTrue(drivetrain.applyRequest(() -> brake));
+
+        new JoystickButton(d_joystick, 1).whileTrue(drivetrain.applyRequest( () ->
+        r_drive.withVelocityX(d_joystick.getY() * MaxSpeed) // Robot relative drive forward
+                .withVelocityY(d_joystick.getX() * MaxSpeed) // robot relative drive left
+                .withRotationalRate(r_joystick.getX() * MaxAngularRate) //robot relative rotation
+    ));
         // joystick.b().whileTrue(drivetrain.applyRequest(() ->
         //     point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))
         // ));

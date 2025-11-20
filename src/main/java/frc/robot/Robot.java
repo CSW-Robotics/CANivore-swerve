@@ -18,7 +18,7 @@ public class Robot extends TimedRobot {
   public Robot() {
     m_robotContainer = new RobotContainer();
   }
-  TalonFX m_motor = new TalonFX(0);
+  //TalonFX m_motor = new TalonFX(0, [can id]);
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run(); 
